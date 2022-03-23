@@ -3,7 +3,7 @@
     <el-container>
       <!--头像-->
       <el-header>
-        <router-link to="/admin">
+        <router-link to="/">
           <img alt="" class="mlogo" src="https://cdn.jsdelivr.net/gh/yubifeng/blog-resource/bloghosting/website/static/websiteAvatar.webp">
         </router-link>
       </el-header>

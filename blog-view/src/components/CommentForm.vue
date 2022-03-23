@@ -27,23 +27,23 @@
               </el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
-            <el-form-item prop="email">
-              <el-popover ref="emailPopover" content="用于接收回复邮件" placement="bottom" trigger="focus"></el-popover>
-              <el-input v-model="commentForm.email" v-popover:emailPopover :validate-event="false" placeholder="邮箱（必填）">
-                <i slot="prefix" class="el-input__icon el-icon-message"></i>
-              </el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6">
-            <el-form-item prop="website">
-              <el-popover ref="websitePopover" content="可以让我参观一下吗😊" placement="bottom" trigger="focus"></el-popover>
-              <el-input v-model="commentForm.website" v-popover:websitePopover :validate-event="false"
-                        placeholder="你的网站（可选）">
-                <i slot="prefix" class="el-input__icon el-icon-map-location"></i>
-              </el-input>
-            </el-form-item>
-          </el-col>
+<!--          <el-col :span="6">-->
+<!--            <el-form-item prop="email">-->
+<!--              <el-popover ref="emailPopover" content="用于接收回复邮件" placement="bottom" trigger="focus"></el-popover>-->
+<!--              <el-input v-model="commentForm.email" v-popover:emailPopover :validate-event="false" placeholder="邮箱（必填）">-->
+<!--                <i slot="prefix" class="el-input__icon el-icon-message"></i>-->
+<!--              </el-input>-->
+<!--            </el-form-item>-->
+<!--          </el-col>-->
+<!--          <el-col :span="6">-->
+<!--            <el-form-item prop="website">-->
+<!--              <el-popover ref="websitePopover" content="可以让我参观一下吗😊" placement="bottom" trigger="focus"></el-popover>-->
+<!--              <el-input v-model="commentForm.website" v-popover:websitePopover :validate-event="false"-->
+<!--                        placeholder="你的网站（可选）">-->
+<!--                <i slot="prefix" class="el-input__icon el-icon-map-location"></i>-->
+<!--              </el-input>-->
+<!--            </el-form-item>-->
+<!--          </el-col>-->
 
           <el-col :offset="1" :span="5">
             <el-form-item>
@@ -77,15 +77,15 @@ export default {
 
   },
   data() {
-    var checkEmail = (rule, value, callback) => {
-      // 验证邮箱的正则表达式
-      const regEmail = /^\w+@\w+(\.\w+)+$/
-      if (regEmail.test(value)) {
-        return callback()
-      }
-      //返回一个错误提示
-      callback(new Error('请输入合法的邮箱'))
-    }
+    // var checkEmail = (rule, value, callback) => {
+    //   验证邮箱的正则表达式
+      // const regEmail = /^\w+@\w+(\.\w+)+$/
+      // if (regEmail.test(value)) {
+      //   return callback()
+      // }
+      // 返回一个错误提示
+      // callback(new Error('请输入合法的邮箱'))
+    // }
 
     return {
 
@@ -106,11 +106,11 @@ export default {
           {required: true, message: '请输入评论昵称'},
           {max: 15, message: '昵称不可多于15个字符', trigger: 'blur'}
         ],
-        email: [
-          {required: true, message: '请输入评论邮箱'},
-          {min: 2, max: 30, message: '不可多于30个字符、少于2个字符', trigger: 'blur'},
-          {validator: checkEmail}
-        ],
+        // email: [
+        //   {required: true, message: '请输入评论邮箱'},
+        //   {min: 2, max: 30, message: '不可多于30个字符、少于2个字符', trigger: 'blur'},
+        //   {validator: checkEmail}
+        // ],
         website: [
 
           {max: 30, message: '不可多于30个字符'}
@@ -152,8 +152,6 @@ export default {
             _this.commentForm.nickname = res.data.data.name
             _this.commentForm.avatar = res.data.data.avatar
             _this.commentForm.qq = res.data.data.qq
-            //console.log(JSON.stringify(_this.commentForm))
-            //console.log("哈哈哈哈哈")
           }
         })
       } else {
@@ -181,7 +179,7 @@ export default {
           console.log(JSON.stringify(this.commentForm))
           //判断是否为管理员(博主)
           if (this.commentForm.isAdminComment == 1) {
-            this.commentForm.avatar = "https://cdn.jsdelivr.net/gh/yubifeng/blog-resource/bloghosting//website/static/websiteAvatar.webp"
+            this.commentForm.avatar = "https://cdn.ichuang.xyz/image/20210118140157_4ef6d.jpg"
           }
           const _this = this
           this.$axios.post('/comment/add', this.commentForm).then(res => {

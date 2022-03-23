@@ -32,7 +32,11 @@ Vue.prototype.$axios = axios
 
 
 Vue.use(Element)
-axios.defaults.baseURL = 'http://39.107.252.30:8083/'
+
+axios.defaults.baseURL = 'https://ichuang.xyz/api/'
+// axios.defaults.baseURL = 'http://localhost:8083/'
+
+
 Vue.config.productionTip = false
 Vue.use(mavonEditor)
 Vue.use(Viewer)

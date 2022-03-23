@@ -4,15 +4,16 @@
     <div class="mblog">
 
       <div class="home-title">
-        <h2>{{ blog.title }}</h2>
+        <h1>{{ blog.description }}</h1>
       </div>
+            <el-divider></el-divider>
 
-      <el-link v-if="ownBlog" icon="el-icon-edit">
-        <router-link :to="{name: 'BlogEdit', params: {blogId: blog.id}}">
-          编辑
-        </router-link>
-      </el-link>
-      <el-divider></el-divider>
+      <!--      <el-link v-if="ownBlog" icon="el-icon-edit">-->
+<!--        <router-link :to="{name: 'BlogEdit', params: {blogId: blog.id}}">-->
+<!--          编辑-->
+<!--        </router-link>-->
+<!--      </el-link>-->
+<!--      <el-divider></el-divider>-->
       <div class="markdown-body" v-html="blog.content"></div>
 
 
@@ -20,12 +21,12 @@
 
     <!--版权信息-->
     <div style="text-align: center">
-      <el-divider></el-divider>
-      <strong style="font-size: 10px">发表时间：{{ blog.createTime }}</strong>
-      <el-divider direction="vertical"></el-divider>
-      <strong style="font-size: 10px">最后修改：{{ blog.updateTime }}</strong>
-      <el-divider direction="vertical"></el-divider>
-      <span><router-link style="font-size: 10px; text-decoration-line: none;" to="/about">联系作者</router-link></span>
+<!--      <el-divider></el-divider>-->
+<!--      <strong style="font-size: 10px">发表时间：{{ blog.createTime }}</strong>-->
+<!--      <el-divider direction="vertical"></el-divider>-->
+<!--      <strong style="font-size: 10px">最后修改：{{ blog.updateTime }}</strong>-->
+<!--      <el-divider direction="vertical"></el-divider>-->
+<!--      <span><router-link style="font-size: 10px; text-decoration-line: none;" to="/about">联系作者</router-link></span>-->
       <br>
       <span style="color: lightcoral"
       >本站内容可自由转载、引用，并且允许商业性使用。但需署名作者且注明文章出处。</span>
@@ -51,10 +52,11 @@ export default {
     return {
       blog: {
         id: "",
-        title: "",
+        // title: "",
+        description: "",
         content: ""
       },
-      ownBlog: false
+      // ownBlog: false
     }
   },
   created() {
@@ -63,15 +65,15 @@ export default {
     this.$axios.get('/about').then(res => {
       const blog = res.data.data
       _this.blog.id = blog.id
-      _this.blog.title = blog.title
+      _this.blog.description = blog.description
       var MardownIt = require("markdown-it")
       var md = new MardownIt()
 
       var result = md.render(blog.content)
       _this.blog.content = result
-      if (_this.$store.getters.getUser) {
-        _this.ownBlog = (blog.userId === _this.$store.getters.getUser.id)
-      }
+      // if (_this.$store.getters.getUser) {
+      //   _this.ownBlog = (blog.userId === _this.$store.getters.getUser.id)
+      // }
     })
   }
 }

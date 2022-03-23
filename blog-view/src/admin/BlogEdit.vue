@@ -13,36 +13,38 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-<!--            <el-form-item label="文章首图URL" prop="firstPicture">-->
-<!--                            <el-input v-model="ruleForm.firstPicture" placeholder="文章首图，可为空"></el-input>-->
+            <!--            <el-form-item label="文章首图URL" prop="firstPicture">-->
+            <!--                            <el-input v-model="ruleForm.firstPicture" placeholder="文章首图，可为空"></el-input>-->
 
-              <el-upload
-                  class="avatar-uploader"
-                  name="img"
-                  action="http://39.107.252.30:8083/uploadImg"
-                  :show-file-list="false"
-                  :on-success="handleAvatarSuccess"
-                  :auto-upload="true"
-                  :before-upload="beforeAvatarUpload">
-                <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-              </el-upload>
+            <el-upload
+                class="avatar-uploader"
+                name="blogImg"
+                action="https://ichuang.xyz/api/uploadContentImg"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess"
+                :auto-upload="true"
+                :before-upload="beforeAvatarUpload">
+              <img v-if="imageUrl" :src="imageUrl" class="avatar">
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
 
-<!--            </el-form-item>-->
+            <!--            </el-form-item>-->
           </el-col>
         </el-row>
         <!--文章描述-->
         <el-form-item label="文章描述" prop="description">
-          <mavon-editor @dblclick.native="autoWrite" v-model="ruleForm.description"/>
+          <mavon-editor   :toolbarsFlag = false
+              @dblclick.native="autoWrite" v-model="ruleForm.description"/>
         </el-form-item>
         <el-form-item label="文章正文" prop="content">
-          <mavon-editor  v-model="ruleForm.content"></mavon-editor>
+          <mavon-editor ref="mavonEditor" @imgAdd="$imgAdd" v-model="ruleForm.content"></mavon-editor>
         </el-form-item>
         <!--分类-->
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="分类" prop="cate">
-              <el-select v-model="ruleForm.typeId" :allow-create="true" :filterable="true" placeholder="请选择分类（输入可添加新分类）" style="width: 100%;">
+              <el-select v-model="ruleForm.typeId" :allow-create="true" :filterable="true" placeholder="请选择分类（输入可添加新分类）"
+                         style="width: 100%;">
                 <el-option v-for="type in types" :key="type.id" :label="type.typeName" :value="type.id"></el-option>
               </el-select>
             </el-form-item>
@@ -50,7 +52,8 @@
           <!--标签，暂时未实现-->
           <el-col :span="12">
             <el-form-item label="标签" prop="tagList">
-              <el-select v-model="ruleForm.tagList" :allow-create="true" :filterable="true" :multiple="true" placeholder="请选择标签（输入可添加新标签）" style="width: 100%;">
+              <el-select v-model="ruleForm.tagList" :allow-create="true" :filterable="true" :multiple="true"
+                         placeholder="请选择标签（输入可添加新标签）" style="width: 100%;">
                 <el-option v-for="item in tagList" :key="item.id" :label="item.name" :value="item.id"></el-option>
               </el-select>
             </el-form-item>
@@ -61,7 +64,8 @@
           <el-col :span="12">
             <el-form-item label="字数" prop="words">
               <!-- 双击计算文章字数-->
-              <el-input v-model="ruleForm.words" placeholder="请输入文章字数" type="number" @dblclick.native="computeWords"></el-input>
+              <el-input v-model="ruleForm.words" placeholder="请输入文章字数" type="number"
+                        @dblclick.native="computeWords"></el-input>
             </el-form-item>
           </el-col>
           <!--浏览次数-->
@@ -126,10 +130,31 @@ export default {
     }
   },
   methods: {
-
-    handleAvatarSuccess(res, file) {
+// 绑定@imgAdd event
+    $imgAdd(pos, $file) {
+      // 第一步.将图片上传到服务器.
+      var formdata = new FormData();
+      formdata.append("blogImg", $file);
+      this.$axios({
+        url: '/uploadContentImg',
+        method: 'post',
+        data: formdata,
+        headers: {'Content-Type': 'multipart/form-data'},
+      }).then((url) => {
+        // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
+        /**
+         * $vm 指为mavonEditor实例，可以通过如下两种方式获取
+         * 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，`$vm`为`mavonEditor`
+         * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>，`$vm`为 `this.$refs.md`
+         */
+        // this.$refs.md.$img2Url(pos, url);
+        this.$refs.mavonEditor.$img2Url(pos,url.data.data);
+      })
+    }
+    ,
+    handleAvatarSuccess(res,file) {
       this.imageUrl = URL.createObjectURL(file.raw);
-      this.ruleForm.firstPicture = "https://cdn.ichuang.xyz/"+res.data
+      this.ruleForm.firstPicture = res.data
     },
     beforeAvatarUpload(file) {
       // const isJPG = file.type === 'image/jpeg';
@@ -146,11 +171,10 @@ export default {
 
     //双击将正文的内容前100字自动写入文章描述中
     autoWrite() {
-      if(this.ruleForm.content.length<100){
-        this.ruleForm.description = this.ruleForm.content.substring(0,this.ruleForm.content.length)
-      }
-      else{
-        this.ruleForm.description = this.ruleForm.content.substring(0,100)
+      if (this.ruleForm.content.length < 100) {
+        this.ruleForm.description = this.ruleForm.content.substring(0, this.ruleForm.content.length)
+      } else {
+        this.ruleForm.description = this.ruleForm.content.substring(0, 100)
       }
     },
     //双击将计算正文内容的字数
@@ -164,7 +188,7 @@ export default {
         if (valid) {
           const _this = this
           // this.$refs.uploadImg.submit()
-          if(_this.ruleForm.id==""){
+          if (_this.ruleForm.id == "") {
             this.$axios.post('/blog/create', this.ruleForm).then(res => {
               console.log(res)
               _this.$alert('操作成功', '提示', {
@@ -174,8 +198,7 @@ export default {
                 }
               });
             })
-          }
-          else{
+          } else {
             this.$axios.post('/blog/update', this.ruleForm).then(res => {
               console.log(res)
               _this.$alert('操作成功', '提示', {
@@ -187,8 +210,7 @@ export default {
             })
           }
 
-        }
-        else {
+        } else {
           console.log('error submit!!');
           return false;
         }
@@ -247,9 +269,11 @@ export default {
   position: relative;
   overflow: hidden;
 }
+
 .avatar-uploader .el-upload:hover {
   border-color: #409EFF;
 }
+
 .avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;
@@ -258,6 +282,7 @@ export default {
   line-height: 178px;
   text-align: center;
 }
+
 .avatar {
   width: 178px;
   height: 178px;

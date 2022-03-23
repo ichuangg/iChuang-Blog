@@ -48,6 +48,9 @@ public class BlogController {
 
     @Autowired
     RedisService redisService;
+
+    @Autowired
+    private QiniuUtils qiniuUtils;
     Logger logger = LoggerFactory.getLogger(BlogController.class);
 
     /**
@@ -232,7 +235,7 @@ public class BlogController {
         Blog byId = blogService.getById(id);
         if (StringUtils.hasLength(byId.getFirstPicture())){
             String delImgName = blogService.getById(id).getFirstPicture().split("/")[3];
-            QiniuUtils.deleteFileFromQiniu(delImgName);
+            qiniuUtils.deleteFileFromQiniu(delImgName);
         }
         if (blogService.removeById(id)) {
             //删除对应博客的评论
@@ -268,7 +271,7 @@ public class BlogController {
 
         if (StringUtils.hasLength(temp.getFirstPicture()) && temp.getFirstPicture()!=blog.getFirstPicture()){
             delImgName = temp.getFirstPicture().split("/")[3];
-            QiniuUtils.deleteFileFromQiniu(delImgName);
+            qiniuUtils.deleteFileFromQiniu(delImgName);
         }
 
         temp.setUpdateTime(LocalDateTime.now());

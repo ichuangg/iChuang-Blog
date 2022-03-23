@@ -151,7 +151,6 @@ public class CommentController {
     @VisitLogger(behavior = "提交评论")
     @PostMapping("/comment/add")
     public Result edit(@Validated @RequestBody Comment comment, HttpServletRequest request) {
-
         if (comment.getContent().contains("<script>") || comment.getEmail().contains("<script>") || comment.getNickname().contains("<script>") || comment.getWebsite().contains("<script>")) {
             return Result.fail("非法输入");
         }
@@ -168,12 +167,10 @@ public class CommentController {
             Comment parentComment = commentService.getOne(new QueryWrapper<Comment>().eq("nickname", comment.getParentCommentNickname()));
             String regex = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
             if (parentComment.getEmail().matches(regex)) {
-                mailService.sendSimpleMail(parentComment.getEmail(), "Skymo博客评论回复", "您的的评论："+parentComment.getContent()+"\n博主回复内容："+comment.getContent());
+                mailService.sendSimpleMail(parentComment.getEmail(), "iChuang博客评论回复", "您的的评论："+parentComment.getContent()+"\n博主回复内容："+comment.getContent());
                 logger.info("邮件发送成功");
             }
-
         }
-
         return Result.succ(null);
     }
 

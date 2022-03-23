@@ -45,7 +45,7 @@ export default {
       hasLogin: false,
       fit: 'fill',
       user: {
-        avatar: "https://cdn.jsdelivr.net/gh/yubifeng/blog-resource/bloghosting//website/static/websiteAvatar.webp"
+        avatar: "https://cdn.ichuang.xyz/image/20210118140157_4ef6d.jpg"
       },
     }
   },

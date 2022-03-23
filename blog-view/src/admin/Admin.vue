@@ -3,12 +3,12 @@
     <!--头部-->
     <el-header>
       <!--标题-->
-      <div>
-        <img alt="" height="60" src="../assets/logo.png">
-        <span> 博客后台管理  </span>
-        <span style="margin-left: 20px">   {{ user.username }}</span>
+      <div style="font-size: 25px; color: #1b1c1d ">
+        <img alt="" height="60" src="">
+        <span> iChuang's Blog</span>
+        <strong style="font-size: 25px; margin-left: 20px"> {{ user.username }}</strong>
         <el-divider direction="vertical"></el-divider>
-        <span><el-link href="/" style="color: white">主页</el-link></span>
+        <span><el-link href="/">返回主页</el-link></span>
         <Header></Header>
       </div>
       <!-- 头像 -->
@@ -223,7 +223,7 @@ export default {
         '52': 'el-icon-view',
       },
       //是否折叠
-      isCollapse: false,
+      isCollapse: true,
       //默认打开的菜单
       defaultOpeneds: ['1', '2', '4', '5'],
       user: {},
@@ -257,7 +257,7 @@ export default {
 
 <style scoped>
 .el-header {
-  background-color: #399BDD;
+  background-color: honeydew;
   display: flex;
   justify-content: space-between;
   padding-left: 10px;

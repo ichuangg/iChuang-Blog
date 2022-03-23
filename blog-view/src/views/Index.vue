@@ -13,14 +13,12 @@
         <Card></Card>
       </div>
 
-
       <!--中间-->
       <div class="index-main-column-middle">
         <keep-alive include="Home">
           <router-view/>
         </keep-alive>
       </div>
-
 
       <!--右侧-->
       <div :class="{'m-display-none':focusMode}" class="index-main-column-right">
@@ -50,8 +48,6 @@
 
 
     <div class="snow-container"></div>
-
-
 
 
   </div>
@@ -101,81 +97,81 @@ export default {
     },
 
     //鼠标点击特效
-    specialEffect(){
-      let a_idx = 0;
-      jQuery(document).ready(function ($) {
-        $("body").click(function (e) {
-          // var a = new Array("❤爱阳阳❤");
-          var a = new Array("❤富强❤", "❤民主❤", "❤文明❤", "❤和谐❤", "❤自由❤", "❤平等❤", "❤公正❤", "❤法治❤", "❤爱国❤", "❤敬业❤", "❤诚信❤", "❤友善❤");
-          // var a = new Array("❤Java❤", "❤C++❤", "❤PHP❤", "❤Mysql❤", "❤Oracle❤", "❤.NET❤", "❤JavaScript❤", "❤H5❤", "❤Python❤", "❤Json❤", "❤Ruby❤", "❤Go❤");
-          var $i = $("<span></span>").text(a[a_idx]);
-          a_idx = (a_idx + 1) % a.length;
-          var x = e.pageX,
-              y = e.pageY;
-          $i.css({
-            "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
-            "top": y - 20,
-            "left": x,
-            "position": "absolute",
-            "font-weight": "bold",
-            "color": "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
-          });
-          $("body").append($i);
-          $i.animate({
-                "top": y - 180,
-                "opacity": 0
-              },
-              1500,
-              function () {
-                $i.remove();
-              });
-        });
-      });
-    },
+    // specialEffect(){
+    //   let a_idx = 0;
+    //   jQuery(document).ready(function ($) {
+    //     $("body").click(function (e) {
+    //       // var a = new Array("❤爱阳阳❤");
+    //       var a = new Array("❤富强❤", "❤民主❤", "❤文明❤", "❤和谐❤", "❤自由❤", "❤平等❤", "❤公正❤", "❤法治❤", "❤爱国❤", "❤敬业❤", "❤诚信❤", "❤友善❤");
+    //       // var a = new Array("❤Java❤", "❤C++❤", "❤PHP❤", "❤Mysql❤", "❤Oracle❤", "❤.NET❤", "❤JavaScript❤", "❤H5❤", "❤Python❤", "❤Json❤", "❤Ruby❤", "❤Go❤");
+    //       var $i = $("<span></span>").text(a[a_idx]);
+    //       a_idx = (a_idx + 1) % a.length;
+    //       var x = e.pageX,
+    //           y = e.pageY;
+    //       $i.css({
+    //         "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+    //         "top": y - 20,
+    //         "left": x,
+    //         "position": "absolute",
+    //         "font-weight": "bold",
+    //         "color": "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+    //       });
+    //       $("body").append($i);
+    //       $i.animate({
+    //             "top": y - 180,
+    //             "opacity": 0
+    //           },
+    //           1500,
+    //           function () {
+    //             $i.remove();
+    //           });
+    //     });
+    //   });
+    // },
 
-    snowSpecial() {
-      (function($){
-        $.fn.snow = function(options){
-          var $flake = $('<div id="snowbox" />').css({'position': 'absolute','z-index':'9999', 'top': '-50px'}).html('&#10052;'),
-              documentHeight 	= $(document).height(),
-              documentWidth	= $(document).width(),
-              defaults = {
-                minSize		: 10,
-                maxSize		: 20,
-                newOn		: 1000,
-                flakeColor	: "#FFFFFF" /* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */
-              },
-              options	= $.extend({}, defaults, options);
-          var interval= setInterval( function(){
-            var startPositionLeft = Math.random() * documentWidth - 100,
-                startOpacity = 0.5 + Math.random(),
-                sizeFlake = options.minSize + Math.random() * options.maxSize,
-                endPositionTop = documentHeight - 200,
-                endPositionLeft = startPositionLeft - 500 + Math.random() * 500,
-                durationFall = documentHeight * 10 + Math.random() * 5000;
-            $flake.clone().appendTo('body').css({
-              left: startPositionLeft,
-              opacity: startOpacity,
-              'font-size': sizeFlake,
-              color: options.flakeColor
-            }).animate({
-              top: endPositionTop,
-              left: endPositionLeft,
-              opacity: 0.2
-            },durationFall,'linear',function(){
-              $(this).remove()
-            });
-          }, options.newOn);
-        };
-      })(jQuery);
-      $(function(){
-        $.fn.snow({
-          minSize: 5, /* 定义雪花最小尺寸 */
-          maxSize: 30,/* 定义雪花最大尺寸 */
-          newOn: 800  /* 定义密集程度，数字越小越密集 */
-        });
-      });
-    }
+    // snowSpecial() {
+    //   (function($){
+    //     $.fn.snow = function(options){
+    //       var $flake = $('<div id="snowbox" />').css({'position': 'absolute','z-index':'9999', 'top': '-50px'}).html('&#10052;'),
+    //           documentHeight 	= $(document).height(),
+    //           documentWidth	= $(document).width(),
+    //           defaults = {
+    //             minSize		: 10,
+    //             maxSize		: 20,
+    //             newOn		: 1000,
+    //             flakeColor	: "#FFFFFF" /* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */
+    //           },
+    //           options	= $.extend({}, defaults, options);
+    //       var interval= setInterval( function(){
+    //         var startPositionLeft = Math.random() * documentWidth - 100,
+    //             startOpacity = 0.5 + Math.random(),
+    //             sizeFlake = options.minSize + Math.random() * options.maxSize,
+    //             endPositionTop = documentHeight - 200,
+    //             endPositionLeft = startPositionLeft - 500 + Math.random() * 500,
+    //             durationFall = documentHeight * 10 + Math.random() * 5000;
+    //         $flake.clone().appendTo('body').css({
+    //           left: startPositionLeft,
+    //           opacity: startOpacity,
+    //           'font-size': sizeFlake,
+    //           color: options.flakeColor
+    //         }).animate({
+    //           top: endPositionTop,
+    //           left: endPositionLeft,
+    //           opacity: 0.2
+    //         },durationFall,'linear',function(){
+    //           $(this).remove()
+    //         });
+    //       }, options.newOn);
+    //     };
+    //   })(jQuery);
+    //   $(function(){
+    //     $.fn.snow({
+    //       minSize: 5, /* 定义雪花最小尺寸 */
+    //       maxSize: 30,/* 定义雪花最大尺寸 */
+    //       newOn: 800  /* 定义密集程度，数字越小越密集 */
+    //     });
+    //   });
+    // }
   },
   computed: {},
   mounted() {
@@ -201,11 +197,11 @@ export default {
 
 /*主页背景*/
 .index-container {
-  min-height: 100vh;
+  /*min-height: 100vh;*/
   /*background-image: url("http://r5fqm0wxc.hd-bkt.clouddn.com/v2-030b0b982ae4062df4d6653899a5f207_r.jpg")!important; ;*/
-  background-repeat: repeat-x;
-  background-attachment:fixed;
-  background-size:cover;
+  /*background-repeat: repeat-x;*/
+  /*background-attachment:fixed;*/
+  /*background-size:cover;*/
 }
 
 .navbar {

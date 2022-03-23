@@ -2,7 +2,7 @@
   <div class="head-photo" style="width: 100%;height: 800px">
     <!-- banner -->
 
-    <img src="http://cdn.ichuang.xyz/index.jpg" style="width: 100%;height: 100%">
+    <img src="https://cdn.ichuang.xyz/index.jpg" style="width: 100%;height: 100%">
 
 
     <div class="banner-container">
@@ -26,6 +26,9 @@
             </router-link>
             <router-link  class="item el-icon-edit" to="/friends">
               友人账
+            </router-link>
+            <router-link  class="item el-icon-edit" to="/admin">
+              写博客
             </router-link>
             <router-link class="item el-icon-info" to="/about">
               关于我
