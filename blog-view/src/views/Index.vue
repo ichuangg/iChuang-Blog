@@ -58,17 +58,32 @@
 
 <script>
 
-import Navbar from "../components/Navbar";
-import Card from "../components/Card";
-import Footer from "../components/Footer";
-import RightCard from "@/components/RightCard";
-import Calendar from "@/components/Calendar";
-import HeadPhoto from "@/components/HeadPhoto";
+
+// import Navbar from "../components/Navbar";
+// import Card from "../components/Card";
+// import Footer from "../components/Footer";
+// import RightCard from "@/components/RightCard";
+// import Calendar from "@/components/Calendar";
+// import HeadPhoto from "@/components/HeadPhoto";
 
 
 export default {
   name: "Index",
-  components: {RightCard, Footer, Navbar, Card, Calendar,HeadPhoto},
+  components: {
+    RightCard: resolve => (['@/components/RightCard'], resolve),
+    Footer: resolve => (['../components/Footer'], resolve),
+    Navbar: resolve => (['../components/Navbar'], resolve),
+    Card: resolve => (['../components/Card'], resolve),
+    Calendar: resolve => (['@/components/Calendar'], resolve),
+    HeadPhoto: resolve => (['@/components/HeadPhoto'], resolve),
+
+    // RightCard,
+    // Footer,
+    // Navbar,
+    // Card,
+    // Calendar,
+    // HeadPhoto
+  },
   data() {
     return {
       focusMode: false,

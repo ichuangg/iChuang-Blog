@@ -46,6 +46,7 @@ public class AccountController {
         }
         String jwt = jwtUtils.generateToken(user.getId(),user.getUsername());
         response.setHeader("Authorization", jwt);
+        //在浏览器中可以看到Authorization请求头
         response.setHeader("Access-Control-Expose-Headers", "Authorization");
         // 用户可以另一个接口
         return Result.succ(MapUtil.builder()

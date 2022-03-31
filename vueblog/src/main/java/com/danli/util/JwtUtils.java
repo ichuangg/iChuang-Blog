@@ -40,6 +40,10 @@ public class JwtUtils {
         Map<String, Object> claims = new HashMap<String, Object>();//创建payload的私有声明（根据特定的业务需要添加，如果要拿这个做验证，一般是需要和jwt的接收方提前沟通好验证方式的）
         claims.put("userId", userId+"");
         claims.put("username", username);
+
+        //eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2NDg4MjI2NzMsInV
+        // zZXJJZCI6IjEiLCJpYXQiOjE2NDg2NDk4NzMsInVzZXJuYW1lIjoicm9vdCJ9._9
+        // QyhqeaK9sH1Mj9my7BhrjdfzfcQbRJnPOu70sSciwufyayq7_xHZ0_EdCT0Mce3I-UYJSU9gkKkY4ric1N_Q
         return Jwts.builder()    // 创建 JWT 对象
                 .setHeaderParam("typ", "JWT")  //设置头部信息
                 .setClaims(claims)     // 设置私有声明

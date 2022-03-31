@@ -26,11 +26,11 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "compression-webpack-plugin": "^9.2.0",
     "highlight.js": "^11.1.0",
     "v-viewer": "^1.6.4",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.0.0"
-
   },
   "browserslist": [
     "> 1%",

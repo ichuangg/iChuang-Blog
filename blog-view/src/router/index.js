@@ -1,21 +1,40 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from "../admin/Login";
-import About from "../views/About";
-import Archives from "../views/Archives";
-import Admin from "../admin/Admin";
-import Home from "../views/Home";
-import Blog from "../views/Blog";
-import BlogEdit from '../admin/BlogEdit.vue';
-import BlogList from "../admin/BlogList";
-import Friends from "../views/Friends";
-import Category from "../views/Category";
-import CommentList from "@/admin/CommentList";
-import FriendList from "@/admin/FriendList";
-import VisitLog from "@/admin/VisitLog";
-import VisitorList from "@/admin/VisitorList";
-import CategoryList from "@/admin/CategoryList";
-import UserManager from "@/admin/UserManager";
+
+
+const Login = resolve => require(['../admin/Login'],resolve);
+const About = resolve => require(['../views/About'],resolve);
+const Archives = resolve => require(['../views/Archives'],resolve);
+const Admin = resolve => require(['../admin/Admin'],resolve);
+const Home = resolve => require(['../views/Home'],resolve);
+const Blog = resolve => require(['../views/Blog'],resolve);
+const BlogEdit = resolve => require(['../admin/BlogEdit'],resolve);
+const BlogList = resolve => require(['../admin/BlogList'],resolve);
+const Friends = resolve => require(['../views/Friends'],resolve);
+const Category = resolve => require(['../views/Category'],resolve);
+const CommentList = resolve => require(['@/admin/CommentList'],resolve);
+const FriendList = resolve => require(['@/admin/FriendList'],resolve);
+const VisitLog = resolve => require(['@/admin/VisitLog'],resolve);
+const VisitorList = resolve => require(['@/admin/VisitorList'],resolve);
+const CategoryList = resolve => require(['@/admin/CategoryList'],resolve);
+const UserManager = resolve => require(['@/admin/UserManager'],resolve);
+
+// import Login from "../admin/Login";
+// import About from "../views/About";
+// import Archives from "../views/Archives";
+// import Admin from "../admin/Admin";
+// import Home from "../views/Home";
+// import Blog from "../views/Blog";
+// import BlogEdit from '../admin/BlogEdit.vue';
+// import BlogList from "../admin/BlogList";
+// import Friends from "../views/Friends";
+// import Category from "../views/Category";
+// import CommentList from "@/admin/CommentList";
+// import FriendList from "@/admin/FriendList";
+// import VisitLog from "@/admin/VisitLog";
+// import VisitorList from "@/admin/VisitorList";
+// import CategoryList from "@/admin/CategoryList";
+// import UserManager from "@/admin/UserManager";
 
 //安装路由
 Vue.use(VueRouter)

@@ -23,12 +23,5 @@ public class LoginDto extends AbstractMethodError implements Serializable  {
     private String password;
 
 
-    public static void main(String[] args) {
-
-
-        InputStream inputStream = LoginDto.class.getResourceAsStream("");
-
-
-    }
 
 }

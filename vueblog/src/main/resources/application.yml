@@ -14,6 +14,7 @@ spring:
   redis:
     host: localhost
     timeout: 5000
+    password: Ichuang123.
   mail:
     host: smtp.163.com
     username: 15054656072@163.com
