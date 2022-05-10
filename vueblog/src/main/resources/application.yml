@@ -1,10 +1,6 @@
 # DataSource Config
 server:
   port: 8083
-  ssl:
-    key-store: classpath:ichuang.xyz.jks
-    key-store-type: JKS
-    key-store-password: 963592390li
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -16,8 +12,8 @@ spring:
       timeout: 5000
   mail:
       host:  smtp.163.com
-      username: 15054656072@163.com
-      password: 1230ASD
+      username: ****@163.com
+      password: ****
       default-encoding: UTF-8
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
@@ -31,9 +27,9 @@ fanli:
 
 admin:
   qiniu:
-    access-key: _Z9-phMig4Rs6tKEX-B3Y3LtB6PNLcwKqNkwKgHD
-    secretKey: MpA7EOjKPTeZQ6-xkAlcXbKC6uhS2LmMt1NpG8aw
-    bucket: ichuang-xyz-imags
+    access-key: *****
+    secretKey: ****
+    bucket: ****
 logging:
   file:
     name: logs/lab.log
