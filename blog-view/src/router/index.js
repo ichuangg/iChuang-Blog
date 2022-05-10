@@ -40,6 +40,14 @@ const UserManager = resolve => require(['@/admin/UserManager'],resolve);
 Vue.use(VueRouter)
 const routes = [
     {
+        path: '/auto',
+        name: 'Auto',
+        component: Auto,
+        meta: {
+            title: '自动抢座任务'
+        }
+    },
+    {
         path: '/login',
         name: 'Login',
         component: Login,

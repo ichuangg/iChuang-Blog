@@ -111,6 +111,7 @@ export default {
     this.getTypes()
     this.getData(1);
     //console.log(this.blogs)
+    结果
   },
 
   mounted() {

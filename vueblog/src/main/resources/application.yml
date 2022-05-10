@@ -1,10 +1,6 @@
 # DataSource Config
 server:
   port: 8083
-#  ssl:
-#    key-store: classpath:ichuang.xyz.jks
-#    key-store-type: JKS
-#    key-store-password: 963592390li
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -14,7 +10,6 @@ spring:
   redis:
     host: localhost
     timeout: 5000
-    password: Ichuang123.
   mail:
     host: smtp.163.com
     username: 15054656072@163.com

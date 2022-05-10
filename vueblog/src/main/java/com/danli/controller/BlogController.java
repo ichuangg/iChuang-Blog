@@ -269,7 +269,7 @@ public class BlogController {
             temp.setStatus(0);
         }
 
-        if (StringUtils.hasLength(temp.getFirstPicture()) && temp.getFirstPicture()!=blog.getFirstPicture()){
+        if (StringUtils.hasLength(temp.getFirstPicture()) && temp.getFirstPicture() != blog.getFirstPicture()){
             delImgName = temp.getFirstPicture().split("/")[3];
             qiniuUtils.deleteFileFromQiniu(delImgName);
         }

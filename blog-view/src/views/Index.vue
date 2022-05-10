@@ -59,30 +59,30 @@
 <script>
 
 
-// import Navbar from "../components/Navbar";
-// import Card from "../components/Card";
-// import Footer from "../components/Footer";
-// import RightCard from "@/components/RightCard";
-// import Calendar from "@/components/Calendar";
-// import HeadPhoto from "@/components/HeadPhoto";
+import Navbar from "../components/Navbar";
+import Card from "../components/Card";
+import Footer from "../components/Footer";
+import RightCard from "@/components/RightCard";
+import Calendar from "@/components/Calendar";
+import HeadPhoto from "@/components/HeadPhoto";
 
 
 export default {
   name: "Index",
   components: {
-    RightCard: resolve => (['@/components/RightCard'], resolve),
-    Footer: resolve => (['../components/Footer'], resolve),
-    Navbar: resolve => (['../components/Navbar'], resolve),
-    Card: resolve => (['../components/Card'], resolve),
-    Calendar: resolve => (['@/components/Calendar'], resolve),
-    HeadPhoto: resolve => (['@/components/HeadPhoto'], resolve),
-
-    // RightCard,
-    // Footer,
-    // Navbar,
-    // Card,
-    // Calendar,
-    // HeadPhoto
+    // RightCard: resolve => (['@/components/RightCard'], resolve),
+    // Footer: resolve => (['../components/Footer'], resolve),
+    // Navbar: resolve => (['../components/Navbar'], resolve),
+    // Card: resolve => (['../components/Card'], resolve),
+    // Calendar: resolve => (['@/components/Calendar'], resolve),
+    // HeadPhoto: resolve => (['@/components/HeadPhoto'], resolve),
+    //
+    RightCard,
+    Footer,
+    Navbar,
+    Card,
+    Calendar,
+    HeadPhoto
   },
   data() {
     return {
@@ -116,7 +116,6 @@ export default {
     //   let a_idx = 0;
     //   jQuery(document).ready(function ($) {
     //     $("body").click(function (e) {
-    //       // var a = new Array("❤爱阳阳❤");
     //       var a = new Array("❤富强❤", "❤民主❤", "❤文明❤", "❤和谐❤", "❤自由❤", "❤平等❤", "❤公正❤", "❤法治❤", "❤爱国❤", "❤敬业❤", "❤诚信❤", "❤友善❤");
     //       // var a = new Array("❤Java❤", "❤C++❤", "❤PHP❤", "❤Mysql❤", "❤Oracle❤", "❤.NET❤", "❤JavaScript❤", "❤H5❤", "❤Python❤", "❤Json❤", "❤Ruby❤", "❤Go❤");
     //       var $i = $("<span></span>").text(a[a_idx]);
@@ -190,14 +189,14 @@ export default {
   },
   computed: {},
   mounted() {
-    if (this.getIsPhone()) {
-      this.focusMode = true
-
-    }
-    else {
-      this.specialEffect()
-      this.snowSpecial()
-    }
+    // if (this.getIsPhone()) {
+    //   this.focusMode = true
+    //
+    // }
+    // else {
+    //   this.specialEffect()
+    //   this.snowSpecial()
+    // }
 
   },
 

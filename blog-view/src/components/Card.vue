@@ -3,7 +3,7 @@
     <!--展示名片头部--头像名称-->
     <div class="card-header">
       <el-avatar :size="50" :src="user.avatar"></el-avatar>
-      <p style="margin-top: 0px;">iChuang</p>
+      <p style="margin-top: 0px;">iChuang</p>  
       <el-divider></el-divider>
     </div>
     <!--卡片中部--github地址-->

@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const path = require('path');
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const productionGzipExtensions = ['js', 'css']
-const isProduction = process.env.NODE_ENV === 'production'
+
 module.exports = {
     productionSourceMap: false,
 

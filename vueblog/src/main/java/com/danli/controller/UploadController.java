@@ -20,12 +20,6 @@ public class UploadController {
 
     @Autowired
     private QiniuUtils qiniuUtils;
-//    @RequestMapping("/uploadImg")
-//    public Result uploadImg(@RequestParam(name = "img")MultipartFile multipartFile) throws IOException {
-//        String s = UUID.randomUUID() +"."+ multipartFile.getOriginalFilename();
-//        qiniuUtils.upload2Qiniu(multipartFile.getBytes(),s);
-//        return Result.succ(s);
-//    }
     @RequestMapping("/uploadContentImg")
     public Result uploadContentImg(@RequestParam(name = "blogImg")MultipartFile multipartFile) throws IOException {
 

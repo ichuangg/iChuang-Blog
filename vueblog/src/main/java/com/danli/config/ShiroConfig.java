@@ -12,6 +12,7 @@ import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisCacheManager;
+import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +46,22 @@ public class ShiroConfig {
         return sessionManager;
     }
 
+
+    /**
+     * @description redis配置
+     */
+    @Bean
+    public RedisManager redisManager(){
+
+        RedisManager redisManager = new RedisManager();
+        redisManager.setTimeout(10000);
+        return redisManager;
+    }
     @Bean
     public DefaultWebSecurityManager securityManager(AccountRealm accountRealm,
                                                      SessionManager sessionManager,
-                                                     RedisCacheManager redisCacheManager) {
+                                                     RedisCacheManager redisCacheManager,
+                                                     RedisManager redisManager) {
 
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager(accountRealm);
 
@@ -63,8 +76,8 @@ public class ShiroConfig {
         subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
         securityManager.setSubjectDAO(subjectDAO);
 
-
         // inject redisCacheManager
+        redisCacheManager.setRedisManager(redisManager);
         securityManager.setCacheManager(redisCacheManager);
         return securityManager;
     }

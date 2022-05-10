@@ -20,9 +20,6 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "qiniu")
 @Data
 public class QiniuUtils {
-    //    public  static String accessKey = "_Z9-phMig4Rs6tKEX-B3Y3LtB6PNLcwKqNkwKgHD";
-//    public  static String secretKey = "MpA7EOjKPTeZQ6-xkAlcXbKC6uhS2LmMt1NpG8aw";
-//    private  static String bucket = "ichuang-xyz-imags";
     private String bucket;
     private String secretKey;
     private String accessKey;
